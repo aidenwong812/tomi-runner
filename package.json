@@ -1,0 +1,56 @@
+{
+  "name": "slick-ci",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "next build",
+    "dev": "next dev",
+    "lint": "next lint",
+    "start": "next start",
+    "build-server": "tsc",
+    "dev-server": "tsx watch src/slickci-runner",
+    "dev-client": "wait-port 3000 && tsx watch src/slickci-scheduler",
+    "dev:trpc": "run-p dev-* --print-label"
+  },
+  "dependencies": {
+    "@gatefi/js-sdk": "^0.18.0",
+    "@t3-oss/env-nextjs": "^0.10.1",
+    "@tanstack/react-query": "^5.48.0",
+    "@trpc/client": "next",
+    "@trpc/react-query": "next",
+    "@trpc/server": "next",
+    "next": "^14.2.4",
+    "npm-run-all": "^4.1.5",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "react-icons": "^5.2.1",
+    "server-only": "^0.0.1",
+    "start-server-and-test": "^2.0.4",
+    "superjson": "^2.2.1",
+    "thirdweb": "^5.30.0",
+    "tsx": "^4.15.8",
+    "wait-port": "^1.1.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/eslint": "^8.56.10",
+    "@types/node": "^20.11.20",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@typescript-eslint/eslint-plugin": "^7.14.1",
+    "@typescript-eslint/parser": "^7.14.1",
+    "eslint": "^9.5.0",
+    "eslint-config-next": "^14.2.4",
+    "pino-pretty": "^11.2.1",
+    "postcss": "^8.4.38",
+    "prettier": "^3.3.2",
+    "prettier-plugin-tailwindcss": "^0.6.5",
+    "tailwindcss": "^3.4.4",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.2"
+  },
+  "ct3aMetadata": {
+    "initVersion": "7.32.0"
+  }
+}
