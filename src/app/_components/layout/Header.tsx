@@ -3,7 +3,7 @@ import Logo from "@/assets/logos/tomi-runner.png"
 
 const   Header = () => {
   return (
-    <div className="flex items-center justify-between bg-[#1010107F] px-5 py-4">
+    <div className="flex items-center justify-between bg-[#1010107F] px-24 py-4">
       <Image src={Logo} alt="logo" width={128} height={24} />
       <ul className="flex items-center gap-5">
         <li className="px-4 py-1 w-[104px] h-[30px]">[ Home ]</li>
