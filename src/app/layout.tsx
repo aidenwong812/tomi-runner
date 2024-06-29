@@ -1,20 +1,23 @@
-import "~/styles/globals.css";
+import "@/styles/globals.css"
 
-import { Inter } from "next/font/google";
+import { Inter } from "next/font/google"
+import Image from "next/image"
+import { ThirdwebProvider } from "thirdweb/react"
 
-import { TRPCReactProvider } from "~/trpc/react";
-import { ThirdwebProvider } from "./thirdweb";
+import { TRPCReactProvider } from "@/trpc/react"
+import Header from "./_components/layout/Header"
+import Background from "@/assets/images/background.png"
 
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-sans",
-});
+})
 
 export const metadata = {
-  title: "SlickCI",
-  description: "Generated for EthGlobal Sydney",
+  title: "Tomi Runner",
+  description: "Tomi Runner",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
-};
+}
 
 export default function RootLayout({
   children,
@@ -23,21 +26,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`font-sans ${inter.variable} min-h-screen flex flex-col justify-between bg-primary-200`}>
-        <TRPCReactProvider>
-          <div className="bg-primary-200 p-2 border-b border-dashed border-bg-100">
-            <div className="container mx-auto text-text-100">
-            SlickCI
-            </div>
-          </div>
-          <ThirdwebProvider>
-          {children}
-          </ThirdwebProvider>
-          <div className="container">
-            
-          </div>
+      <body className={`font-sans ${inter.variable} bg-background px-20 py-5 relative`}>
+        <ThirdwebProvider>
+          <TRPCReactProvider>
+            <Image src={Background} alt="background" className="absolute top-0 left-0 w-full -z-10" />
+            <Header />
+            {children}
           </TRPCReactProvider>
+        </ThirdwebProvider>
       </body>
     </html>
-  );
+  )
 }
