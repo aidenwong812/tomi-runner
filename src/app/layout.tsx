@@ -27,7 +27,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`font-sans ${inter.variable} bg-background px-20 py-5 relative`}>
+      <body className={`font-sans ${inter.variable} bg-background py-5 relative`}>
         <ThirdwebProvider>
           <TRPCReactProvider>
             <Image src={Background} alt="background" className="absolute top-0 left-0 w-full -z-10" />

@@ -49,7 +49,10 @@ export default {
       },
       fontFamily: {
         sans: ["var(--font-sans)", ...fontFamily.sans],
-      }
+      },
+      boxShadow: {
+        'custom': '0 0 24px #FF008366', // Customize as needed
+      },
     },
   },
   plugins: [],
