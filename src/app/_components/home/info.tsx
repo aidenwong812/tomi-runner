@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import heroImage from "~/assets/static/hero.png";
+import heroImage from "@/assets/static/hero.png";
 import { AiOutlineDatabase } from "react-icons/ai";
 import { VscClearAll } from "react-icons/vsc";
 import { IoKeyOutline } from "react-icons/io5";

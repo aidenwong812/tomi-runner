@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import React from 'react';
 import { FiCpu } from "react-icons/fi";
-import github from '~/assets/logos/github.svg';
-import slickci from '~/assets/logos/slick.png';
+import github from '@/assets/logos/github.svg';
+import slickci from '@/assets/logos/slick.png';
 
 const PricingTable = () => {
     const hardwareOptions = [

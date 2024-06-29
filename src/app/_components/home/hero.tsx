@@ -1,11 +1,11 @@
 import React from "react";
 import Image from "next/image";
-import heroImage from "~/assets/static/hero.png";
-import weset from "~/assets/logos/weset.webp";
-import pxm from "~/assets/logos/pxm.svg";
-import veme from "~/assets/logos/veme.svg";
-import mygeotokens from "~/assets/logos/mygeotokens.gif";
-import gang from "~/assets/logos/gang.png";
+import heroImage from "@/assets/static/hero.png";
+import weset from "@/assets/logos/weset.webp";
+import pxm from "@/assets/logos/pxm.svg";
+import veme from "@/assets/logos/veme.svg";
+import mygeotokens from "@/assets/logos/mygeotokens.gif";
+import gang from "@/assets/logos/gang.png";
 import { FaGithub } from "react-icons/fa";
 import Link from "next/link";
 
