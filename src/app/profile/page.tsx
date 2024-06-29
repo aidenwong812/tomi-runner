@@ -9,10 +9,10 @@ import { GateFiSDK, GateFiDisplayModeEnum } from '@gatefi/js-sdk';
 import { useReadContract } from 'thirdweb/react'
 import { balanceOf } from 'thirdweb/extensions/erc20'
 import { getContract } from 'thirdweb'
-import { getUserEmail } from "thirdweb/wallets/in-app";
+import { getUserEmail } from "thirdweb/wallets/in-app"
 import { defineChain } from 'thirdweb'
 
-export const chain = defineChain(5003)
+const chain = defineChain(5003)
 
 
 const Table = () => {
