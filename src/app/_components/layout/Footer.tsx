@@ -5,7 +5,7 @@ import Vector from "@/assets/logos/vector.png"
 
 const Footer = () => {
   return (
-    <div className="px-24 py-8">
+    <div className="px-24 py-8 border-t border-[#FFFFFF0D]">
       <div className="flex justify-between border-b border-[#EFEFEF] pb-8">
         <Image src={Logo} alt="logo" width={144} className="!h-10 mt-8" />
         <div className="flex flex-col gap-2.5 mt-8">

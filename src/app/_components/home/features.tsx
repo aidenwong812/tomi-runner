@@ -12,7 +12,7 @@ import Export from "@/assets/logos/export.png"
 
 const Features = () => {
   return (
-    <div className="flex flex-col justify-center border-t border-b border-[#FFFFFF0D] px-24 py-[72px]">
+    <div className="flex flex-col justify-center border-t border-[#FFFFFF0D] px-24 py-[72px]">
       <div className="flex flex-col justify-center gap-6">
         <h1 className="font-semibold text-5xl text-center">Features</h1>
         <div className="grid grid-cols-3 gap-2.5">
@@ -58,10 +58,10 @@ const Features = () => {
 
 
       <div className="flex flex-col items-center mt-16 gap-4">
-        <div className="font-normal text-sm rounded-full bg-[#FFFFFF1A] px-2 py-0.5">Did you know?</div>
+        <div className="font-normal text-sm rounded-full bg-border px-2 py-0.5">Did you know?</div>
         <div className="font-medium text-5xl">20% less</div>
         <div className="text-xl">For tomi token holders</div>
-        <button className="flex items-center justify-center gap-2.5 px-8 py-4 rounded-lg border border-border">
+        <button className="flex items-center justify-center gap-2.5 px-8 py-4 rounded-lg border border-primary">
           <div className="uppercase">Get Tomi Tokens</div>
           <Image src={Export} alt="export" width={16} height={16} />
         </button>

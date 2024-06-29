@@ -15,7 +15,7 @@ const Banner = () => {
           <p className="text-2xl font-bold mt-1">4,000 Free Monthly! <span className="text-lg text-primary">Compute minutes.</span></p>
         </div>
         <div className="flex text-sm gap-4 mt-8">
-          <button className="uppercase bg-secondary border border-border rounded-md py-4 px-8">Start For Free</button>
+          <button className="uppercase bg-secondary border border-primary rounded-md py-4 px-8">Start For Free</button>
           <button className="uppercase rounded-md py-4 px-8">[Documentation]</button>
         </div>
       </div>

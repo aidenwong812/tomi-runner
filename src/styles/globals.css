@@ -20,8 +20,8 @@
     --accent-foreground: 240 5.9% 10%;
     --destructive: 0 72.22% 50.59%;
     --destructive-foreground: 0 0% 98%;
-    --border: #FF0083;
-    --input: 240 5.9% 90%;
+    --border: #FFFFFF1A;
+    --input: #F1F1F133;
     --ring: 240 5% 64.9%;
     --radius: 0.5rem;
   }
