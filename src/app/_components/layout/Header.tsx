@@ -12,7 +12,7 @@ const   Header = () => {
       </ul>
       <div className="flex gap-4">
         <button className="transition-colors ease-in-out duration-300 px-4 py-2 rounded-lg hover:bg-primary">Sign Up</button>
-        <button className="transition-colors ease-in-out duration-300 px-4 py-2 border rounded-lg border-border hover:bg-primary">Log In</button>
+        <button className="transition-colors ease-in-out duration-300 px-4 py-2 border rounded-lg border-primary hover:bg-primary">Log In</button>
       </div>
     </div>
   )
