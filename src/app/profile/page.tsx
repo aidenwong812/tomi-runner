@@ -4,7 +4,7 @@ import { IoMdInformationCircleOutline } from "react-icons/io";
 import NavBar from "../_components/navbar";
 import { useActiveAccount } from "thirdweb/react";
 import { ConnectEmbed } from "thirdweb/react";
-import { client } from "../client";
+import { client } from "../../utils/thirdweb-client";
 import { GateFiSDK, GateFiDisplayModeEnum } from '@gatefi/js-sdk';
 import { useReadContract } from 'thirdweb/react'
 import { balanceOf } from 'thirdweb/extensions/erc20'
