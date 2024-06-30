@@ -29,7 +29,7 @@ const ClaimReward = ({ open, setOpen, setConfirm }: ClaimRewardProps) => {
                 <h5 className="text-secondary-foreground">Reward</h5>
                 <p className="font-semibold text-4xl">1,000.54 TOMI</p>
               </div>
-              <div className="font-medium text-xl">1,000 tomi tokens added to your balance</div>
+              <div className="font-medium text-xl">Are you sure you want to claim your rewards</div>
               <div className="flex items-center gap-2.5 w-full">
                 <button
                   className="w-1/2 border border-primary rounded-lg p-4 text-sm"

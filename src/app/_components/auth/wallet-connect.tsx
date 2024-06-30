@@ -1,4 +1,4 @@
-import { Button, Dialog, DialogBackdrop, DialogPanel, DialogTitle } from "@headlessui/react"
+import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from "@headlessui/react"
 import Image from "next/image"
 import Close from "@/assets/logos/close-circle.png"
 import ArrowUpRight from "@/assets/logos/Arrow_Up_Right.png"

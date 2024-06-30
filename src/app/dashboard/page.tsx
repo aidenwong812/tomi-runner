@@ -8,10 +8,16 @@ import Percent1 from "@/assets/logos/percent1.png"
 import Percent2 from "@/assets/logos/percent2.png"
 import ClaimReward from "../_components/dashboard/claim-reward"
 import ConfirmClaim from "../_components/dashboard/confirm-claim"
+import AddFunds from "../_components/dashboard/add-funds"
+import SuccessFunds from "../_components/dashboard/success-funds"
 
 const Dashboard = () => {
   const [openReward, setOpenReward] = useState(false)
   const [openConfirmClaim, setOpenConfirmClaim] = useState(false)
+  const [openAddFunds, setOpenAddFunds] = useState(false)
+  const [openConfirmFunds, setOpenConfirmFunds] = useState(false)
+  const [openSuccessFunds, setOpenSuccessFunds] = useState(false)
+
 
   return (
     <div className="flex flex-col px-24 py-14 gap-5">
@@ -58,7 +64,12 @@ const Dashboard = () => {
           <Card className="flex flex-col p-8 gap-6 h-5/6">
             <h4 className="font-light text-lg text-secondary-foreground">Balance</h4>
             <p className="text-4xl font-semibold">7,872.54 TOMI</p>
-            <button className="px-28 py-5 border border-primary rounded-lg text-sm font-semibold">Add funds to your account</button>
+            <button
+              className="px-28 py-5 border border-primary rounded-lg text-sm font-semibold"
+              onClick={() => setOpenAddFunds(true)}
+            >
+              Add funds to your account
+            </button>
           </Card>
         </Card>
       </div>
@@ -147,6 +158,8 @@ const Dashboard = () => {
 
       <ClaimReward open={openReward} setOpen={setOpenReward} setConfirm={setOpenConfirmClaim} />
       <ConfirmClaim open={openConfirmClaim} setOpen={setOpenConfirmClaim} />
+      <AddFunds open={openAddFunds} setOpen={setOpenAddFunds} />
+      <SuccessFunds open={openSuccessFunds} setOpen={setOpenSuccessFunds} />
     </div>
   )
 }
