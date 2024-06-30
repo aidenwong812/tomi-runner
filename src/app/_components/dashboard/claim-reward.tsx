@@ -31,8 +31,21 @@ const ClaimReward = ({ open, setOpen, setConfirm }: ClaimRewardProps) => {
               </div>
               <div className="font-medium text-xl">1,000 tomi tokens added to your balance</div>
               <div className="flex items-center gap-2.5 w-full">
-                <button className="w-1/2 border border-primary rounded-lg p-4" onClick={() => setOpen(false)}>Cancel</button>
-                <button className="w-1/2 bg-primary rounded-lg p-4" onClick={() => setConfirm(true)}>Claim Rewards</button>
+                <button
+                  className="w-1/2 border border-primary rounded-lg p-4 text-sm"
+                  onClick={() => setOpen(false)}
+                >
+                  Cancel
+                </button>
+                <button
+                  className="w-1/2 bg-primary rounded-lg p-4 text-sm"
+                  onClick={() => {
+                    setConfirm(true)
+                    setOpen(false)
+                  }}
+                >
+                  Claim Rewards
+                </button>
               </div>
             </div>
           </DialogPanel>
