@@ -1,10 +1,18 @@
+"use client"
+
+import { useState } from "react"
 import Image from "next/image"
 import Github from "@/assets/logos/github-icon.png"
 import Card from "../_components/dashboard/card"
 import Percent1 from "@/assets/logos/percent1.png"
 import Percent2 from "@/assets/logos/percent2.png"
+import ClaimReward from "../_components/dashboard/claim-reward"
+import ConfirmClaim from "../_components/dashboard/confirm-claim"
 
 const Dashboard = () => {
+  const [openReward, setOpenReward] = useState(false)
+  const [openConfirmClaim, setOpenConfirmClaim] = useState(false)
+
   return (
     <div className="flex flex-col px-24 py-14 gap-5">
       <Card className="flex w-full px-8 py-5 justify-between items-center">
@@ -73,7 +81,12 @@ const Dashboard = () => {
             <h3 className="text-2xl font-semibold">1,000 TOMI Tokens</h3>
             <p className="text-sm text-secondary-foreground mt-2.5">Node Operator's Rewards</p>
           </div>
-          <button className="bg-primary rounded-lg px-2.5 py-3.5 text-sm font-semibold">Claim Rewards</button>
+          <button
+            className="bg-primary rounded-lg px-2.5 py-3.5 text-sm font-semibold"
+            onClick={() => setOpenReward(true)}
+          >
+            Claim Rewards
+          </button>
         </Card>
       </div>
 
@@ -130,6 +143,10 @@ const Dashboard = () => {
           </table>
         </div>
       </Card>
+
+
+      <ClaimReward open={openReward} setOpen={setOpenReward} setConfirm={setOpenConfirmClaim} />
+      <ConfirmClaim open={openConfirmClaim} setOpen={setOpenConfirmClaim} />
     </div>
   )
 }
