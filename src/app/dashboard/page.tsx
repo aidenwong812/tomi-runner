@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import Image from "next/image"
+import Link from "next/link"
 import Github from "@/assets/logos/github-icon.png"
 import Card from "../_components/dashboard/card"
 import Percent1 from "@/assets/logos/percent1.png"
@@ -23,10 +24,14 @@ const Dashboard = () => {
     <div className="flex flex-col px-24 py-14 gap-5">
       <Card className="flex w-full px-8 py-5 justify-between items-center">
         <div className="text-2xl font-semibold">Configure</div>
-        <button className="flex items-center border border-border rounded-lg px-2.5 py-4 gap-2">
+        <Link
+          className="flex items-center border border-border rounded-lg px-2.5 py-4 gap-2"
+          href='https://github.com/apps/tomi-ci2/installations/select_target'
+          target="_blank"
+        >
           <Image src={Github} alt="github" width={24} height={24} />
           <p className="text-sm">Add Github Repo</p>
-        </button>
+        </Link>
       </Card>
 
 
