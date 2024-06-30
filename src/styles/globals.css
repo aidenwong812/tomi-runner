@@ -30,3 +30,18 @@
 body {
   @apply bg-background text-foreground;
 }
+
+table {
+  text-align: left;
+}
+
+th,
+td {
+  padding: 20px 0px 20px 36px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+td {
+  border-top: 1px solid #FFFFFF1A;
+}
