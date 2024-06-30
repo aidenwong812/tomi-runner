@@ -109,48 +109,52 @@ const Dashboard = () => {
 
         <div className="border border-border rounded-lg">
           <table className="w-full">
-            <tr>
-              <th className="w-1/6">Runner</th>
-              <th className="w-1/6">Minutes</th>
-              <th className="uppercase w-2/6">Unit Price</th>
-              <th className="uppercase w-2/6 border-l border-border">Amount</th>
-            </tr>
-            <tr>
-              <td>2 vCPU</td>
-              <td>97 minutes</td>
-              <td>US$ 0.00</td>
-              <td className="border-l border-border">US$ 0.39</td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-              <td>Subtotal</td>
-              <td className="border-l border-border">US$ 0.39</td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-              <td>Provider Discount</td>
-              <td className="border-l border-border">US$ 0.39</td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-              <td>Total</td>
-              <td className="border-l border-border">US$ 0.39</td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-              <td>Applied balance</td>
-              <td className="border-l border-border">US$ 0.39</td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-              <td>Est. Amount due</td>
-              <td className="border-l border-border">US$ 0.39</td>
-            </tr>
+            <thead>
+              <tr>
+                <th className="w-1/6">Runner</th>
+                <th className="w-1/6">Minutes</th>
+                <th className="uppercase w-2/6">Unit Price</th>
+                <th className="uppercase w-2/6 border-l border-border">Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>2 vCPU</td>
+                <td>97 minutes</td>
+                <td>US$ 0.00</td>
+                <td className="border-l border-border">US$ 0.39</td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td>Subtotal</td>
+                <td className="border-l border-border">US$ 0.39</td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td>Provider Discount</td>
+                <td className="border-l border-border">US$ 0.39</td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td>Total</td>
+                <td className="border-l border-border">US$ 0.39</td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td>Applied balance</td>
+                <td className="border-l border-border">US$ 0.39</td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td>Est. Amount due</td>
+                <td className="border-l border-border">US$ 0.39</td>
+              </tr>
+            </tbody>
           </table>
         </div>
       </Card>

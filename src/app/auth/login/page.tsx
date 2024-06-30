@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import Image from "next/image"
+import Link from "next/link"
 import Logo from "@/assets/logos/tomi-runner.png"
 import Arrow from "@/assets/logos/arrow.png"
 import Google from "@/assets/logos/google.png"
@@ -19,10 +20,13 @@ const LogIn = () => {
         <input type="text" placeholder="Email Address" className="text-sm p-4 rounded-lg outline-none border border-input color-[#696969] bg-transparent" />
         <input type="password" placeholder="Password" className="text-sm p-4 rounded-lg outline-none border border-input color-[#696969] bg-transparent" />
       </div>
-      <button className="flex items-center justify-center rounded-lg bg-primary gap-2.5 w-full p-5">
+      <Link
+        className="flex items-center justify-center rounded-lg bg-primary gap-2.5 w-full p-5"
+        href="/dashboard"
+      >
         <div className="uppercase text-sm">Sign In</div>
         <Image src={Arrow} alt="arrow" width={16} height={16} />
-      </button>
+      </Link>
       <div className="flex items-center gap-2.5 w-full">
         <hr className="border border-secondary-foreground w-1/2" />
         <p className="text-xs text-secondary-foreground whitespace-nowrap">Or Sign in with</p>
