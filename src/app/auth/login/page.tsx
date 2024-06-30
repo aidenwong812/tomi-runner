@@ -3,14 +3,22 @@
 import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
+import { signIn } from 'next-auth/react'
 import Logo from "@/assets/logos/tomi-runner.png"
 import Arrow from "@/assets/logos/arrow.png"
 import Google from "@/assets/logos/google.png"
 import Github from "@/assets/logos/github-icon.png"
 import WalletConnect from "@/app/_components/auth/wallet-connect"
+import { useRouter } from "next/navigation"
 
 const LogIn = () => {
-  const [openModal, setOpenModal] = useState(true)
+  const router = useRouter()
+  const [openModal, setOpenModal] = useState(false)
+
+  const handleSignIn = async (type: string) => {
+    await signIn(type)
+    router.push("/dashboard")
+  }
   
   return (
     <div className="flex flex-col justify-center items-center gap-6 mt-16 mb-24 mx-auto bg-gradient-to-b from-[#FFFFFF08] to-[#78787808] border border-border px-5 py-8 w-[600px] rounded-lg">
@@ -33,11 +41,17 @@ const LogIn = () => {
         <hr className="border border-secondary-foreground w-1/2" />
       </div>
       <div className="flex gap-6 w-full">
-        <button className="flex items-center justify-center gap-3 p-4 w-1/2 bg-[#333333] rounded-lg">
+        <button
+          className="flex items-center justify-center gap-3 p-4 w-1/2 bg-[#333333] rounded-lg"
+          onClick={() => handleSignIn("google")}
+        >
           <Image src={Google} alt="google" width={24} height={24} />
           <div className="text-sm">Google</div>
         </button>
-        <button className="flex items-center justify-center gap-3 p-4 w-1/2 bg-[#333333] rounded-lg">
+        <button
+          className="flex items-center justify-center gap-3 p-4 w-1/2 bg-[#333333] rounded-lg"
+          onClick={() => handleSignIn("github")}
+        >
           <Image src={Github} alt="github" width={24} height={24} />
           <div className="text-sm">Github</div>
         </button>
