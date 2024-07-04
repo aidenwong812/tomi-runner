@@ -12,7 +12,7 @@ import Export from "@/assets/logos/export.png"
 
 const Features = () => {
   return (
-    <div className="flex flex-col justify-center border-t border-[#FFFFFF0D] px-24 py-[72px]">
+    <div id="features" className="flex flex-col justify-center border-t border-[#FFFFFF0D] px-24 py-28">
       <div className="flex flex-col justify-center gap-6">
         <h1 className="font-semibold text-5xl text-center">Features</h1>
         <div className="grid grid-cols-3 gap-2.5">
@@ -26,7 +26,7 @@ const Features = () => {
       </div>
       
       
-      <div className="flex flex-col justify-center gap-8">
+      <div id="pricing" className="flex flex-col justify-center gap-8">
         <h1 className="font-semibold text-5xl text-center mt-28">PRICING</h1>
         <div className="grid grid-cols-4 border-2 border-[#3E3E3E] rounded-lg items-center justify-center">
           <div className="col-span-2">
