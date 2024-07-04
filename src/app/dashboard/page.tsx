@@ -21,7 +21,7 @@ const Dashboard = () => {
 
 
   return (
-    <div className="flex flex-col px-24 py-14 gap-5">
+    <div className="flex flex-col px-24 py-20 gap-5">
       <Card className="flex w-full px-8 py-5 justify-between items-center">
         <div className="text-2xl font-semibold">Configure</div>
         <Link

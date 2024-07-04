@@ -21,7 +21,7 @@ const LogIn = () => {
   }
   
   return (
-    <div className="flex flex-col justify-center items-center gap-6 mt-16 mb-24 mx-auto bg-gradient-to-b from-[#FFFFFF08] to-[#78787808] border border-border px-5 py-8 w-[600px] rounded-lg">
+    <div className="flex flex-col justify-center items-center gap-6 mt-20 mb-24 mx-auto bg-gradient-to-b from-[#FFFFFF08] to-[#78787808] border border-border px-5 py-8 w-[600px] rounded-lg">
       <Image src={Logo} alt="logo" width={128} height={24} />
       <h2 className="font-semibold text-2xl">Sign In</h2>
       <div className="flex flex-col gap-4 w-full">
