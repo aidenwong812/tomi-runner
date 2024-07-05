@@ -1,10 +1,25 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image"
+import { useRouter } from "next/navigation"
+import Link from "next/link";
+import { signIn } from "next-auth/react"
 import Logo from "@/assets/logos/tomi-runner.png"
 import Arrow from "@/assets/logos/arrow.png"
 import Google from "@/assets/logos/google.png"
 import Github from "@/assets/logos/github-icon.png"
+import WalletConnect from "@/app/_components/auth/wallet-connect";
 
 const SignUp = () => {
+  const router = useRouter()
+  const [openModal, setOpenModal] = useState(false)
+  
+  const handleSignUp = async (type: string) => {
+    await signIn(type)
+    router.push("/dashboard")
+  }
+
   return (
     <div className="flex flex-col justify-center items-center gap-6 mt-20 mb-24 mx-auto bg-gradient-to-b from-[#FFFFFF08] to-[#78787808] border border-border px-5 py-8 w-[600px] rounded-lg">
       <Image src={Logo} alt="logo" width={128} height={24} />
@@ -24,17 +39,32 @@ const SignUp = () => {
         <hr className="border border-secondary-foreground w-1/2" />
       </div>
       <div className="flex gap-6 w-full">
-        <button className="flex items-center justify-center gap-3 p-4 w-1/2 bg-[#333333] rounded-lg">
+        <button
+          className="flex items-center justify-center gap-3 p-4 w-1/2 bg-[#333333] rounded-lg"
+          onClick={() => handleSignUp("google")}
+        >
           <Image src={Google} alt="google" width={24} height={24} />
           <div className="text-sm">Google</div>
         </button>
-        <button className="flex items-center justify-center gap-3 p-4 w-1/2 bg-[#333333] rounded-lg">
+        <button
+          className="flex items-center justify-center gap-3 p-4 w-1/2 bg-[#333333] rounded-lg"
+          onClick={() => handleSignUp("github")}
+        >
           <Image src={Github} alt="github" width={24} height={24} />
           <div className="text-sm">Github</div>
         </button>
       </div>
-      <button className="uppercase w-full p-4 text-center border border-primary rounded-lg text-sm">Web3 Wallet</button>
-      <div className="text-xs font-black text-secondary-foreground">Already have an accont? <span className="text-primary">Sign In</span></div>
+      <button
+        className="uppercase w-full p-4 text-center border border-primary rounded-lg text-sm"
+        onClick={() => setOpenModal(true)}
+      >
+        Web3 Wallet
+      </button>
+      <div className="text-xs font-black text-secondary-foreground">
+        Already have an accont? <Link href="/auth/login" className="text-primary">Sign In</Link>
+      </div>
+
+      <WalletConnect open={openModal} setOpen={setOpenModal} />
     </div>
   )
 }

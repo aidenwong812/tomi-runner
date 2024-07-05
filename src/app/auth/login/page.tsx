@@ -3,13 +3,13 @@
 import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { signIn } from 'next-auth/react'
+import { useRouter } from "next/navigation"
+import { signIn } from "next-auth/react"
 import Logo from "@/assets/logos/tomi-runner.png"
 import Arrow from "@/assets/logos/arrow.png"
 import Google from "@/assets/logos/google.png"
 import Github from "@/assets/logos/github-icon.png"
 import WalletConnect from "@/app/_components/auth/wallet-connect"
-import { useRouter } from "next/navigation"
 
 const LogIn = () => {
   const router = useRouter()
@@ -62,7 +62,9 @@ const LogIn = () => {
       >
         Web3 Wallet
       </button>
-      <div className="text-xs font-black text-secondary-foreground">Don't have an accont, yet? <span className="text-primary">Sign Up</span></div>
+      <div className="text-xs font-black text-secondary-foreground">
+        Don't have an accont, yet? <Link href="/auth/signup" className="text-primary">Sign Up</Link>
+      </div>
 
       <WalletConnect open={openModal} setOpen={setOpenModal} />
     </div>
