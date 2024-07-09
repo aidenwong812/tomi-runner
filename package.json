@@ -4,9 +4,11 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "postinstall": "prisma generate",
     "build": "next build",
     "dev": "next dev",
     "lint": "next lint",
+    "db:push": "yarn prisma db push",
     "start": "next start",
     "build-server": "tsc",
     "dev-server": "tsx watch src/slickci-runner",
@@ -16,6 +18,7 @@
   "dependencies": {
     "@gatefi/js-sdk": "^0.18.0",
     "@headlessui/react": "^2.1.1",
+    "@prisma/client": "^5.16.2",
     "@t3-oss/env-nextjs": "^0.10.1",
     "@tanstack/react-query": "^5.48.0",
     "@trpc/client": "next",
@@ -48,6 +51,7 @@
     "postcss": "^8.4.38",
     "prettier": "^3.3.2",
     "prettier-plugin-tailwindcss": "^0.6.5",
+    "prisma": "^5.16.2",
     "tailwindcss": "^3.4.4",
     "ts-node": "^10.9.2",
     "typescript": "^5.5.2"
