@@ -8,11 +8,67 @@ datasource db {
 }
 
 model User {
-  id           Int     @id @default(autoincrement())
-  email        String  @unique
-  userName     String?
-  password     String?
-  registerType String
-  isDeleted    Boolean @default(false)
-  balance      Float   @default(0)
+  id            String    @id @default(cuid())
+  email         String    @unique
+  emailVerified DateTime?
+  image         String?
+  name          String?
+  password      String?
+  isDeleted     Boolean   @default(false)
+  balance       Float     @default(0)
+
+  accounts Account[]
+  sessions Session[]
+  tokens   Token[]
+}
+
+model Account {
+  id                       String  @id @default(cuid())
+  type                     String
+  provider                 String
+  providerAccountId        String
+  refresh_token            String?
+  refresh_token_expires_in Int?
+  access_token             String?
+  expires_at               Int?
+  token_type               String?
+  scope                    String?
+  id_token                 String?
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@unique([provider, providerAccountId])
+  @@index([userId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  expires      DateTime
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model Token {
+  id         String    @id @default(cuid())
+  token      String
+  type       String
+  identifier String
+  expires    DateTime
+  sentTo     String?
+  usedAt     DateTime?
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([token, type])
+  @@unique([identifier, token])
+  @@index([userId])
 }

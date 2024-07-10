@@ -3,22 +3,15 @@
 import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { useRouter } from "next/navigation"
-import { signIn } from "next-auth/react"
 import Logo from "@/assets/logos/tomi-runner.png"
 import Arrow from "@/assets/logos/arrow.png"
 import Google from "@/assets/logos/google.png"
 import Github from "@/assets/logos/github-icon.png"
 import WalletConnect from "@/app/_components/auth/wallet-connect"
+import { handleSignIn } from "@/app/_components/auth/action"
 
 const LogIn = () => {
-  const router = useRouter()
   const [openModal, setOpenModal] = useState(false)
-
-  const handleSignIn = async (type: string) => {
-    await signIn(type)
-    router.push("/dashboard")
-  }
   
   return (
     <div className="flex flex-col justify-center items-center gap-6 mt-20 mb-24 mx-auto bg-gradient-to-b from-[#FFFFFF08] to-[#78787808] border border-border px-5 py-8 w-[600px] rounded-lg">

@@ -5,9 +5,8 @@ const prisma = new PrismaClient()
 
 const userData: Prisma.UserCreateInput[] = [
   {
-    userName: 'Aiden',
+    name: 'Aiden',
     email: 'lionstar259007@gmail.com',
-    registerType: 'manual',
     password: 'password',
   },
 ]
