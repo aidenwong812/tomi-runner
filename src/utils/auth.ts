@@ -1,4 +1,4 @@
-import NextAuth from "next-auth"
+import NextAuth, { NextAuthConfig } from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
 import GithubProvider from "next-auth/providers/github"
 import Credentials from "next-auth/providers/credentials"
@@ -41,7 +41,7 @@ const authOptions = {
     })
   ],
   secret: process.env.NEXTAUTH_SECRET || '',
-}
+} satisfies NextAuthConfig
 
 export const { handlers, auth, signIn, signOut } = NextAuth(authOptions)
 
