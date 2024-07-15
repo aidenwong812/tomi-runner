@@ -87,7 +87,7 @@ const Dashboard = () => {
             <p className="text-sm text-secondary-foreground mt-2.5">Get Rewarded For Providing Compute Resources</p>
           </div>
           <div className="flex gap-2.5">
-            <button className="bg-primary rounded-lg px-2.5 py-3.5 text-sm font-semibold">Become a Provider</button>
+            <button className="bg-primary rounded-lg px-2.5 py-3.5 text-sm font-semibold" disabled>Become a Node Operator (Coming soon)</button>
             <button className="border border-border rounded-lg px-2.5 py-3.5 text-sm font-semibold">Refer a Friend</button>
           </div>
         </Card>

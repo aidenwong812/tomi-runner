@@ -5,7 +5,7 @@ import Workflow2 from "@/assets/images/workflow2.png"
 
 const Banner = () => {
   return (
-    <div className="flex px-24 py-32 w-full justify-center items-center">
+    <div className="flex px-24 py-32 w-full justify-between items-center">
       <div className="w-1/2 flex flex-col gap-4">
         <div className="uppercase text-sm">over <span className="text-xl">60%</span> cheaper than github actions</div>
         <div className="flex flex-col gap-2">
