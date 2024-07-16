@@ -29,6 +29,8 @@
 
 body {
   @apply bg-background text-foreground;
+  max-width: 1920px;
+  margin: auto;
 }
 
 table {
