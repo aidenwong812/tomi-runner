@@ -106,7 +106,7 @@ const Dashboard = () => {
         </Card>
       </div>
 
-      <Card className="flex flex-col gap-6 p-6 mb-8">
+      {/* <Card className="flex flex-col gap-6 p-6 mb-8">
         <div>
           <h3 className="text-2xl font-semibold">Upcoming Usage Invoice</h3>
           <p className="text-sm text-secondary-foreground mt-2.5">Billing period: May 4, 2024 - June 4, 2024. Concurrency extensions are not reflected in this table.</p>
@@ -162,7 +162,7 @@ const Dashboard = () => {
             </tbody>
           </table>
         </div>
-      </Card>
+      </Card> */}
 
 
       <ClaimReward open={openReward} setOpen={setOpenReward} setConfirm={setOpenConfirmClaim} />
