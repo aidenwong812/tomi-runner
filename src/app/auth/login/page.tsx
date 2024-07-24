@@ -1,20 +1,16 @@
 "use client"
 
-import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import Logo from "@/assets/logos/tomi-runner.png"
 import Arrow from "@/assets/logos/arrow.png"
 import Google from "@/assets/logos/google.png"
 import Github from "@/assets/logos/github-icon.png"
-import WalletConnect from "@/app/_components/auth/wallet-connect"
 import { handleSignIn } from "@/app/_components/auth/action"
 
 const LogIn = () => {
-  const [openModal, setOpenModal] = useState(false)
-  
   return (
-    <div className="flex flex-col justify-center items-center gap-6 mt-20 mb-24 mx-auto bg-gradient-to-b from-[#FFFFFF08] to-[#78787808] border border-border px-5 py-8 w-[600px] rounded-lg">
+    <div className="flex flex-col justify-center items-center gap-6 mt-32 mb-24 mx-auto bg-gradient-to-b from-[#FFFFFF08] to-[#78787808] border border-border px-5 py-8 w-[550px] rounded-lg">
       <Image src={Logo} alt="logo" width={128} height={24} />
       <h2 className="font-semibold text-2xl">Sign In</h2>
       <div className="flex flex-col gap-4 w-full">
@@ -49,17 +45,9 @@ const LogIn = () => {
           <div className="text-sm">Github</div>
         </button>
       </div>
-      <button
-        className="uppercase w-full p-4 text-center border border-primary rounded-lg text-sm hover:bg-primary"
-        onClick={() => setOpenModal(true)}
-      >
-        Web3 Wallet
-      </button>
       <div className="text-xs font-black text-secondary-foreground">
         Don't have an accont, yet? <Link href="/auth/signup" className="text-primary">Sign Up</Link>
       </div>
-
-      <WalletConnect open={openModal} setOpen={setOpenModal} />
     </div>
   )
 }
