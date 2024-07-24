@@ -2,10 +2,12 @@
 
 import React, { useState } from "react"
 import Link from "next/link"
+import WalletConnect from "@/app/_components/auth/wallet-connect";
 import { handleSignOut } from "../auth/action"
 
 const HeaderList = ({ user }: { user: string }) => {
   const [hash, setHash] = useState("home")
+  const [openModal, setOpenModal] = useState(false)
 
   return (
     <>
@@ -50,7 +52,13 @@ const HeaderList = ({ user }: { user: string }) => {
                 Dashboard
               </Link>
               <button
-                className="transition-colors ease-in-out duration-300 px-4 py-2 border rounded-lg border-primary hover:bg-primary"
+                className="uppercase transition-colors ease-in-out duration-300 px-4 py-2 border border-primary rounded-lg hover:bg-primary"
+                onClick={() => setOpenModal(true)}
+              >
+                Web3 Wallet
+              </button>
+              <button
+                className="transition-colors ease-in-out duration-300 px-4 py-2 border rounded-lg border-primary bg-primary hover:bg-transparent"
                 onClick={() => handleSignOut()}
               >
                 Sign Out
@@ -74,6 +82,8 @@ const HeaderList = ({ user }: { user: string }) => {
           )
         }
       </div>
+
+      <WalletConnect open={openModal} setOpen={setOpenModal} />
     </>
   )
 }
