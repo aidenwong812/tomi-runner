@@ -2,12 +2,20 @@
 
 import React, { useState } from "react"
 import Link from "next/link"
+import Image from "next/image";
+import { useActiveAccount } from "thirdweb/react";
+
 import WalletConnect from "@/app/_components/auth/wallet-connect";
+import User from "@/assets/logos/user.png"
+import ArrowDown from "@/assets/logos/arrow-down.png"
+import { formatAddress } from "@/utils/formatAddress";
 import { handleSignOut } from "../auth/action"
 
 const HeaderList = ({ user }: { user: string }) => {
   const [hash, setHash] = useState("home")
   const [openModal, setOpenModal] = useState(false)
+  const account = useActiveAccount()
+  console.log(account)
 
   return (
     <>
@@ -51,14 +59,26 @@ const HeaderList = ({ user }: { user: string }) => {
               >
                 Dashboard
               </Link>
+              {
+                account ? (
+                  <button
+                    className="flex items-center gap-2.5 p-2.5 border border-border rounded-lg"
+                  >
+                    <Image src={User} alt="user" width={22} height={22} />
+                    <p className="text-sm">{formatAddress(account.address)}</p>
+                    <Image src={ArrowDown} alt="arrowdown" width={20} height={20} />
+                  </button>
+                ) : (
+                  <button
+                    className="uppercase transition-colors ease-in-out duration-300 px-4 py-2 border border-primary rounded-lg hover:bg-primary"
+                    onClick={() => setOpenModal(true)}
+                  >
+                    Web3 Wallet
+                  </button>
+                )
+              }
               <button
-                className="uppercase transition-colors ease-in-out duration-300 px-4 py-2 border border-primary rounded-lg hover:bg-primary"
-                onClick={() => setOpenModal(true)}
-              >
-                Web3 Wallet
-              </button>
-              <button
-                className="transition-colors ease-in-out duration-300 px-4 py-2 border rounded-lg border-primary bg-primary hover:bg-transparent"
+                className="transition-colors ease-in-out duration-300 px-4 py-2 border rounded-lg border-border hover:bg-transparent text-sm"
                 onClick={() => handleSignOut()}
               >
                 Sign Out

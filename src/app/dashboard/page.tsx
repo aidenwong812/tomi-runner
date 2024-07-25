@@ -25,7 +25,7 @@ const Dashboard = () => {
       <Card className="flex w-full px-8 py-5 justify-between items-center">
         <div className="text-2xl font-semibold">Configure</div>
         <Link
-          className="flex items-center border border-border rounded-lg px-2.5 py-4 gap-2"
+          className="flex items-center border border-border rounded-lg px-4 py-2.5 gap-2"
           href='https://github.com/apps/tomi-ci2/installations/select_target'
           target="_blank"
         >
