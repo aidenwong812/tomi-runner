@@ -15,7 +15,6 @@ const HeaderList = ({ user }: { user: string }) => {
   const [hash, setHash] = useState("home")
   const [openModal, setOpenModal] = useState(false)
   const account = useActiveAccount()
-  console.log(account)
 
   return (
     <>

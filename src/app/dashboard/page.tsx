@@ -20,7 +20,6 @@ const Dashboard = async () => {
   const [openConfirmFunds, setOpenConfirmFunds] = useState(false)
   const [openSuccessFunds, setOpenSuccessFunds] = useState(false)
   const session = await auth()
-  console.log(session)
 
   return (
     <div className="flex flex-col px-24 py-20 gap-5">

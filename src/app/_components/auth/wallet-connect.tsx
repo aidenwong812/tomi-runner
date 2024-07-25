@@ -19,8 +19,6 @@ type WalletConnectProps = {
 const WalletConnect = ({ open, setOpen }: WalletConnectProps) => {
   const { connect, isConnecting, error } = useConnect();
   const router = useRouter()
-  console.log(isConnecting)
-  console.log(error)
 
   return (
     <Dialog open={open} as="div" className="relative z-10 focus:outline-none" onClose={() => setOpen(false)}>
