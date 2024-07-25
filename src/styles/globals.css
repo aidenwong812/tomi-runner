@@ -23,6 +23,8 @@
     --border: #FFFFFF1A;
     --input: #F1F1F133;
     --ring: 240 5% 64.9%;
+    --progress-background: #00FF1A1A;
+    --progress: #00FF1A;
     --radius: 0.5rem;
   }
 }

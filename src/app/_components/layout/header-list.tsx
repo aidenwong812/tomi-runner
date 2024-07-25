@@ -77,7 +77,7 @@ const HeaderList = ({ user }: { user: string }) => {
                 )
               }
               <button
-                className="transition-colors ease-in-out duration-300 px-4 py-2 border rounded-lg border-border hover:bg-transparent text-sm"
+                className="transition-colors ease-in-out duration-300 px-4 py-2 border rounded-lg border-border text-sm"
                 onClick={() => handleSignOut()}
               >
                 Sign Out
