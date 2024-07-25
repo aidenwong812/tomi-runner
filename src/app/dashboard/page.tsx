@@ -7,18 +7,20 @@ import Github from "@/assets/logos/github-icon.png"
 import Card from "../_components/dashboard/card"
 import Percent1 from "@/assets/logos/percent1.png"
 import Percent2 from "@/assets/logos/percent2.png"
+import { auth } from "@/utils/auth"
 import ClaimReward from "../_components/dashboard/claim-reward"
 import ConfirmClaim from "../_components/dashboard/confirm-claim"
 import AddFunds from "../_components/dashboard/add-funds"
 import SuccessFunds from "../_components/dashboard/success-funds"
 
-const Dashboard = () => {
+const Dashboard = async () => {
   const [openReward, setOpenReward] = useState(false)
   const [openConfirmClaim, setOpenConfirmClaim] = useState(false)
   const [openAddFunds, setOpenAddFunds] = useState(false)
   const [openConfirmFunds, setOpenConfirmFunds] = useState(false)
   const [openSuccessFunds, setOpenSuccessFunds] = useState(false)
-
+  const session = await auth()
+  console.log(session)
 
   return (
     <div className="flex flex-col px-24 py-20 gap-5">
@@ -54,7 +56,7 @@ const Dashboard = () => {
               <div className="flex flex-col px-9 gap-2.5 items-center">
                 <h3 className="font-light text-lg">Free Compute Minutes</h3>
                 <Image src={Percent2} alt="percent" width={256} height={36} />
-                <p className="text-sm">3500 Minutes Used</p>
+                <p className="text-sm">{session?.user?.balance || 0} Minutes Used</p>
               </div>
               <button className="px-20 py-4 border border-primary rounded-lg text-sm font-semibold">Buy more capacity</button>
             </Card>

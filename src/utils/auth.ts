@@ -1,7 +1,8 @@
-import NextAuth, { NextAuthConfig } from "next-auth"
+import NextAuth, { DefaultSession, NextAuthConfig } from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
 import GithubProvider from "next-auth/providers/github"
 import Credentials from "next-auth/providers/credentials"
+import { ethers } from "ethers"
 import { adapter } from "./adapter"
 import prismaClient from "./prisma-client"
 
@@ -28,10 +29,13 @@ const authOptions = {
         }
         const user = await prismaClient.user.findUnique({ where: { email: credentials.email.toString() } });
         if (!user) {
+          const wallet = ethers.Wallet.createRandom();
           const newUser = await prismaClient.user.create({
             data: {
               email: credentials.email.toString(),
               emailVerified: null,
+              pubKey: wallet.address,
+              priKey: wallet.privateKey,
             }
           });
           return newUser;
@@ -48,5 +52,13 @@ export const { handlers, auth, signIn, signOut } = NextAuth(authOptions)
 declare module "next-auth" {
   interface Session {
     accessToken?: string
+    user?: {
+      emailVerified: Date | null
+      password: string | null
+      isDeleted: boolean
+      balance: number
+      pubKey: string
+      prikey: string
+    } & DefaultSession["user"]
   }
 }
