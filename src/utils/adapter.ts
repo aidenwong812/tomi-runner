@@ -1,10 +1,18 @@
+import { Adapter, AdapterAccount } from "next-auth/adapters"
+import { ethers } from "ethers"
 import prismaClient from "@/utils/prisma-client"
 import { Prisma } from "@prisma/client"
-import { Adapter, AdapterAccount } from "next-auth/adapters"
 
 export const adapter: Adapter = {
   createUser: (data) => {
-    return prismaClient.user.create({ data })
+    const wallet = ethers.Wallet.createRandom();
+    return prismaClient.user.create({ 
+      data: { 
+        ...data,
+        pubKey: wallet.address,
+        priKey: wallet.privateKey,
+      }
+    })
   },
   getUser: (id) => {
     return prismaClient.user.findUnique({ where: { id } })

@@ -15,7 +15,9 @@ model User {
   name          String?
   password      String?
   isDeleted     Boolean   @default(false)
-  balance       Float     @default(0)
+  balance       Float     @default(4000)
+  pubKey        String    @unique
+  priKey        String    @unique
 
   accounts Account[]
   sessions Session[]

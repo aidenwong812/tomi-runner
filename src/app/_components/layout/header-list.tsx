@@ -55,7 +55,7 @@ const HeaderList = ({ user }: { user: string }) => {
             <>
               <Link
                 className="transition-colors ease-in-out duration-300 px-4 py-2 rounded-lg hover:bg-primary"
-                href="/auth/signup"
+                href="/dashboard"
               >
                 Dashboard
               </Link>
