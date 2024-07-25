@@ -8,6 +8,8 @@ const userData: Prisma.UserCreateInput[] = [
     name: 'Aiden',
     email: 'lionstar259007@gmail.com',
     password: 'password',
+    pubKey: '0x0000000000000000000000000000000000000000',
+    priKey: '0x0000000000000000000000000000000000000000',
   },
 ]
 
