@@ -1,9 +1,8 @@
 import Image from "next/image"
 import Link from "next/link"
 import Logo from "@/assets/logos/tomi-runner.png"
-import HeaderList from "./header-list"
 import { auth } from "@/utils/auth"
-import { handleSignOut } from "../auth/action"
+import HeaderList from "./header-list"
 
 const Header = async () => {
   const session = await auth()

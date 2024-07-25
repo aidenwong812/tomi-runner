@@ -9,6 +9,10 @@ export default {
         border: "var(--border)",
         input: "var(--input)",
         ring: "var(--ring)",
+        progress: {
+          DEFAULT: "var(--progress-background)",
+          foreground: "var(--progress)",
+        },
         background: "var(--background)",
         foreground: "var(--foreground)",
         primary: {
