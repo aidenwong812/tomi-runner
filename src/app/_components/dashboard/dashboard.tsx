@@ -4,7 +4,11 @@ import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { User } from "next-auth"
+import { useActiveAccount, useWalletBalance } from "thirdweb/react"
+import { ethereum } from "thirdweb/chains"
 import Github from "@/assets/logos/github-icon.png"
+import { thirdwebClient } from "@/utils/thirdweb-client"
+import { MaxFreeBalance, TomiTokenAddress } from "@/utils/constant"
 import AddFunds from "./add-funds"
 import Card from "./card"
 import ClaimReward from "./claim-reward"
@@ -23,12 +27,19 @@ type Props = {
 }
 
 const Dashboard = ({ user }: Props) => {
-  const maxFreeBalance = 4000
   const [openReward, setOpenReward] = useState(false)
   const [openConfirmClaim, setOpenConfirmClaim] = useState(false)
   const [openAddFunds, setOpenAddFunds] = useState(false)
   const [openConfirmFunds, setOpenConfirmFunds] = useState(false)
   const [openSuccessFunds, setOpenSuccessFunds] = useState(false)
+
+  const account = useActiveAccount()
+  const { data: tokenData, isLoading, isError } = useWalletBalance({
+    chain: ethereum,
+    address: account?.address,
+    client: thirdwebClient,
+    tokenAddress: TomiTokenAddress,
+  });
 
   return (
     <div className="flex flex-col px-24 py-20 gap-5">
@@ -56,7 +67,7 @@ const Dashboard = ({ user }: Props) => {
               <div className="flex flex-col px-9 gap-2.5 items-center">
                 <h3 className="font-light text-lg">Allowed Concurrent AMD64</h3>
                 <div className="w-full rounded-full bg-progress h-9">
-                  <div className="bg-progress-foreground h-full rounded-full" style={{ width: 35 + '%'}}></div>
+                  <div className="bg-progress-foreground h-full rounded-full" style={{ width: 35 + '%' }}></div>
                 </div>
                 <p className="text-sm">64 vCPUs</p>
               </div>
@@ -68,9 +79,10 @@ const Dashboard = ({ user }: Props) => {
                 <div className="w-full rounded-full bg-progress h-9">
                   <div
                     className="bg-progress-foreground h-full rounded-full"
-                    style={{ width: (user?.balance || 0) / maxFreeBalance * 100 + '%'}} />
+                    style={{ width: (user?.balance || 0) / MaxFreeBalance * 100 + '%' }}
+                  />
                 </div>
-                <p className="text-sm">{user?.balance || 0} Minutes Used</p>
+                <p className="text-sm">{MaxFreeBalance - (user?.balance || 0)} Minutes Used</p>
               </div>
               <button className="px-20 py-4 border border-primary rounded-lg text-sm font-semibold">Buy more capacity</button>
             </Card>
@@ -84,7 +96,9 @@ const Dashboard = ({ user }: Props) => {
           </div>
           <Card className="flex flex-col p-8 gap-6 h-5/6">
             <h4 className="font-light text-lg text-secondary-foreground">Balance</h4>
-            <p className="text-4xl font-semibold">7,872.54 TOMI</p>
+            <p className="text-4xl font-semibold">
+              {`${parseFloat(tokenData?.displayValue || "0").toFixed(2)} ${tokenData?.symbol || "TOMI"}`}
+            </p>
             <button
               className="px-28 py-5 border border-primary rounded-lg text-sm font-semibold"
               onClick={() => setOpenAddFunds(true)}
