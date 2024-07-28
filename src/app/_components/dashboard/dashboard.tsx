@@ -63,18 +63,18 @@ const Dashboard = ({ user }: Props) => {
             <p className="text-sm text-secondary-foreground mt-2.5">Here you can see your account's limits for AMD64 vCPUs and ARM vCPUs</p>
           </div>
           <div className="flex gap-5 h-5/6 w-full">
-            <Card className="flex flex-col px-2 py-8 gap-6 items-center w-1/2">
-              <div className="flex flex-col px-9 gap-2.5 items-center">
+            <Card className="flex flex-col px-8 py-8 gap-6 items-center w-1/2">
+              <div className="w-full flex flex-col gap-2.5 items-center">
                 <h3 className="font-light text-lg">Allowed Concurrent AMD64</h3>
                 <div className="w-full rounded-full bg-progress h-9">
                   <div className="bg-progress-foreground h-full rounded-full" style={{ width: 35 + '%' }}></div>
                 </div>
                 <p className="text-sm">64 vCPUs</p>
               </div>
-              <button className="px-20 py-4 border border-primary rounded-lg text-sm font-semibold">Buy more capacity</button>
+              <button className="w-full py-4 border border-primary rounded-lg text-sm font-semibold">Buy more capacity</button>
             </Card>
-            <Card className="flex flex-col px-2 py-9 gap-6 items-center w-1/2">
-              <div className="flex flex-col px-9 gap-2.5 items-center">
+            <Card className="flex flex-col px-8 py-9 gap-6 items-center w-1/2">
+              <div className="w-full flex flex-col gap-2.5 items-center">
                 <h3 className="font-light text-lg">Free Compute Minutes</h3>
                 <div className="w-full rounded-full bg-progress h-9">
                   <div
@@ -84,7 +84,7 @@ const Dashboard = ({ user }: Props) => {
                 </div>
                 <p className="text-sm">{MaxFreeBalance - (user?.balance || 0)} Minutes Used</p>
               </div>
-              <button className="px-20 py-4 border border-primary rounded-lg text-sm font-semibold">Buy more capacity</button>
+              <button className="w-full py-4 border border-primary rounded-lg text-sm font-semibold">Buy more capacity</button>
             </Card>
           </div>
         </Card>
@@ -100,7 +100,7 @@ const Dashboard = ({ user }: Props) => {
               {`${parseFloat(tokenData?.displayValue || "0").toFixed(2)} ${tokenData?.symbol || "TOMI"}`}
             </p>
             <button
-              className="px-28 py-5 border border-primary rounded-lg text-sm font-semibold"
+              className="py-5 border border-primary rounded-lg text-sm font-semibold"
               onClick={() => setOpenAddFunds(true)}
             >
               Add funds to your account
@@ -110,29 +110,16 @@ const Dashboard = ({ user }: Props) => {
       </div>
 
 
-      <div className="flex w-full gap-5">
-        <Card className="flex w-1/2 items-center justify-between p-8">
+      <div className="w-full gap-5">
+        <Card className="flex items-center justify-between p-8">
           <div>
-            <h3 className="text-2xl font-semibold">Become a Node Operator</h3>
+            <h3 className="text-2xl font-semibold">Become a Node Operator and Earn Rewards</h3>
             <p className="text-sm text-secondary-foreground mt-2.5">Get Rewarded For Providing Compute Resources</p>
           </div>
           <div className="flex gap-2.5">
             <button className="bg-primary rounded-lg px-2.5 py-3.5 text-sm font-semibold" disabled>Become a Node Operator (Coming soon)</button>
             <button className="border border-border rounded-lg px-2.5 py-3.5 text-sm font-semibold">Refer a Friend</button>
           </div>
-        </Card>
-
-        <Card className="flex w-1/2 items-center justify-between p-8">
-          <div>
-            <h3 className="text-2xl font-semibold">1,000 TOMI Tokens</h3>
-            <p className="text-sm text-secondary-foreground mt-2.5">Node Operator's Rewards</p>
-          </div>
-          <button
-            className="bg-primary rounded-lg px-2.5 py-3.5 text-sm font-semibold"
-            onClick={() => setOpenReward(true)}
-          >
-            Claim Rewards
-          </button>
         </Card>
       </div>
 
