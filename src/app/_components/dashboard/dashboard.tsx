@@ -6,6 +6,7 @@ import Link from "next/link"
 import { User } from "next-auth"
 import { useActiveAccount, useWalletBalance } from "thirdweb/react"
 import { ethereum } from "thirdweb/chains"
+import { toast } from "react-toastify"
 import Github from "@/assets/logos/github-icon.png"
 import { thirdwebClient } from "@/utils/thirdweb-client"
 import { MaxFreeBalance, TomiTokenAddress } from "@/utils/constant"
@@ -36,10 +37,18 @@ const Dashboard = ({ user }: Props) => {
   const account = useActiveAccount()
   const { data: tokenData, isLoading, isError } = useWalletBalance({
     chain: ethereum,
-    address: account?.address,
+    address: user?.pubKey,
     client: thirdwebClient,
     tokenAddress: TomiTokenAddress,
   });
+
+  const handleAddFunds = () => {
+    if (!account) {
+      toast.error("Please connect your wallet to proceed.")
+      return
+    }
+    setOpenAddFunds(true)
+  }
 
   return (
     <div className="flex flex-col px-24 py-20 gap-5">
@@ -100,8 +109,8 @@ const Dashboard = ({ user }: Props) => {
               {`${parseFloat(tokenData?.displayValue || "0").toFixed(2)} ${tokenData?.symbol || "TOMI"}`}
             </p>
             <button
-              className="py-5 border border-primary rounded-lg text-sm font-semibold"
-              onClick={() => setOpenAddFunds(true)}
+              className="py-5 border border-primary rounded-lg text-sm font-semibold transition-colors ease-in-out duration-300 hover:bg-primary"
+              onClick={handleAddFunds}
             >
               Add funds to your account
             </button>

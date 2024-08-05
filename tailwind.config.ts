@@ -43,6 +43,10 @@ export default {
           DEFAULT: "var(--card)",
           foreground: "var(--card-foreground)",
         },
+        select: {
+          DEFAULT: "var(--select-background)",
+          border: "var(--select-border)",
+        }
       },
       borderRadius: {
         xl: `calc(var(--radius) + 4px)`,
