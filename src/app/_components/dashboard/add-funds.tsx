@@ -61,9 +61,9 @@ const AddFunds = ({ open, setOpen }: AddFundsProps) => {
                   </div>
                   <div className="flex flex-col gap-2 items-end">
                     <h5 className="text-primary text-md font-medium whitespace-nowrap">
-                      {`${parseFloat(tokenData?.displayValue || "0").toFixed(2)} ${tokenData?.symbol || "TOMI"}`}
+                      {`Balance: ${parseFloat(tokenData?.displayValue || "0").toFixed(2)} ${tokenData?.symbol || "TOMI"}`}
                     </h5>
-                    <div className="flex py-1.5 px-4 items-center justify-center gap-3 bg-select border border-select-border rounded-full w-fit">
+                    <div className="flex py-1.5 px-4 items-center justify-center gap-3 bg-select border border-select-border rounded-full">
                       <div className="bg-secondary rounded-full p-1">
                         <Image src={Tomi} alt="tomi" width={24} height={24} className="rounded-full" />
                       </div>

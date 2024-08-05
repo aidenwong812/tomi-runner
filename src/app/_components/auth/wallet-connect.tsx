@@ -1,7 +1,7 @@
 import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from "@headlessui/react"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
-import { AutoConnect, useConnect } from "thirdweb/react"
+import { useConnect } from "thirdweb/react"
 import { createWallet, injectedProvider } from "thirdweb/wallets"
 
 import { thirdwebClient } from "@/utils/thirdweb-client"
