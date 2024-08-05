@@ -26,6 +26,16 @@
     --progress-background: #00FF1A1A;
     --progress: #00FF1A;
     --radius: 0.5rem;
+    --select-background: #1C1C1C;
+    --select-border: #262626;
+  }
+
+  input[type='number']::-webkit-outer-spin-button,
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number'] {
+    -webkit-appearance: none;
+    margin: 0;
+    -moz-appearance: textfield !important;
   }
 }
 
