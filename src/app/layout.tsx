@@ -3,15 +3,14 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import { Inter } from "next/font/google"
 import Image from "next/image"
-import { AutoConnect, ThirdwebProvider } from "thirdweb/react"
-import { createWallet } from "thirdweb/wallets";
+import { ThirdwebProvider } from "thirdweb/react"
 import { ToastContainer } from 'react-toastify';
 
 import { TRPCReactProvider } from "@/trpc/react"
-import { thirdwebClient } from "@/utils/thirdweb-client";
 import Background from "@/assets/images/background.png"
 import Header from "./_components/layout/Header"
 import Footer from "./_components/layout/Footer"
+import AutoWalletConnect from "./_components/auth/auto-connect";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -22,19 +21,6 @@ export const metadata = {
   title: "Tomi Runner",
   description: "Tomi Runner",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
-}
-
-const wallets = [
-  createWallet("com.tomi"),
-  createWallet("io.metamask"),
-  createWallet("walletConnect"),
-]
-
-const appMetadata = {
-  name: "Tomi Runner",
-  description: "Deploy CI/CD GitHub Actions workflows to Decentralized physical infrastructure network (DePIN)",
-  url: process.env.NEXT_PUBLIC_BASE_URL,
-  logoUrl: "/favicon.ico",
 }
 
 export default function RootLayout({
@@ -51,7 +37,7 @@ export default function RootLayout({
             <Header />
             {children}
             <Footer />
-            <AutoConnect client={thirdwebClient} wallets={wallets} appMetadata={appMetadata} />
+            <AutoWalletConnect />
             <ToastContainer autoClose={3000} newestOnTop theme="dark" />
           </TRPCReactProvider>
         </ThirdwebProvider>
