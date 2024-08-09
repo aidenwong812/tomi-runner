@@ -193,7 +193,7 @@ const Dashboard = ({ user }: Props) => {
 
       <ClaimReward open={openReward} setOpen={setOpenReward} setConfirm={setOpenConfirmClaim} />
       <ConfirmClaim open={openConfirmClaim} setOpen={setOpenConfirmClaim} />
-      <AddFunds open={openAddFunds} setOpen={setOpenAddFunds} />
+      <AddFunds open={openAddFunds} setOpen={setOpenAddFunds} dest={user?.pubKey} />
       <SuccessFunds open={openSuccessFunds} setOpen={setOpenSuccessFunds} />
     </div>
   )
