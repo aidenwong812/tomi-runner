@@ -14,8 +14,8 @@
     --primary-foreground: 0 0% 98%;
     --secondary: #171717;
     --secondary-foreground: #999999;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
+    --muted: #292929;
+    --muted-foreground: #4A4A4A;
     --accent: 240 4.8% 95.9%;
     --accent-foreground: 240 5.9% 10%;
     --destructive: 0 72.22% 50.59%;

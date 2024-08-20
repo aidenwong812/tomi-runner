@@ -1,3 +1,4 @@
+import { useState } from "react"
 import {
   Dialog,
   DialogBackdrop,
@@ -6,7 +7,9 @@ import {
   Input,
 } from "@headlessui/react"
 import Image from "next/image"
+import { getContract, sendAndConfirmTransaction } from "thirdweb"
 import { useActiveAccount, useWalletBalance } from "thirdweb/react"
+import { transfer } from "thirdweb/extensions/erc20"
 import { ethereum } from "thirdweb/chains"
 import { thirdwebClient } from "@/utils/thirdweb-client"
 import { TomiTokenAddress } from "@/utils/constant"
@@ -16,9 +19,11 @@ import Tomi from "@/assets/logos/tomi.png"
 type AddFundsProps = {
   open: boolean
   setOpen: (open: boolean) => void
+  dest?: string
 }
 
-const AddFunds = ({ open, setOpen }: AddFundsProps) => {
+const AddFunds = ({ dest, open, setOpen }: AddFundsProps) => {
+  const [funds, setFunds] = useState(50.00)
   const account = useActiveAccount()
   const { data: tokenData, isLoading, isError } = useWalletBalance({
     chain: ethereum,
@@ -26,6 +31,31 @@ const AddFunds = ({ open, setOpen }: AddFundsProps) => {
     client: thirdwebClient,
     tokenAddress: TomiTokenAddress,
   });
+
+  const handleAddFunds = async () => {
+    if (account && dest) {
+      const contract = getContract({
+        client: thirdwebClient,
+        chain: ethereum,
+        address: TomiTokenAddress,
+       });
+  
+      const transaction = transfer({
+        contract,
+        to: dest,
+        amount: funds,
+      })
+  
+      const transactionReceipt = await sendAndConfirmTransaction({
+        account,
+        transaction,
+      })
+
+      console.log(transactionReceipt)
+    }
+    
+    setOpen(false)
+  }
 
   return (
     <Dialog open={open} as="div" className="relative z-10 focus:outline-none" onClose={() => setOpen(false)}>
@@ -53,10 +83,11 @@ const AddFunds = ({ open, setOpen }: AddFundsProps) => {
                     <Input
                       type="number"
                       className="block w-full rounded-lg border-none bg-transparent py-1.5 text-2xl text-white focus:outline-none data-[focus]:outline-none"
-                      defaultValue="50.00"
                       placeholder="50.00"
-                      step="0.01"
                       min="50.00"
+                      step="0.01"
+                      value={funds}
+                      onChange={(event) => setFunds(Number(event.target.value))}
                     />
                   </div>
                   <div className="flex flex-col gap-2 items-end">
@@ -71,7 +102,13 @@ const AddFunds = ({ open, setOpen }: AddFundsProps) => {
                     </div>
                   </div>
                 </div>
-                <button className="uppercase w-full text-sm p-4 bg-primary rounded-md">Buy Now</button>
+                <button
+                  className="uppercase w-full text-sm p-4 bg-primary rounded-md disabled:bg-muted disabled:text-muted-foreground"
+                  // disabled={funds > (tokenData?.value || 0)}
+                  onClick={handleAddFunds}
+                >
+                  Buy Now
+                </button>
               </div>
             </div>
           </DialogPanel>
