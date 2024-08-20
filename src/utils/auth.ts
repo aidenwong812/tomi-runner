@@ -12,68 +12,68 @@ const authOptions = {
   adapter,
   providers: [
     GoogleProvider({
-      clientId: process.env.NEXT_PUBLIC_GOOGLE_ID || '',
-      clientSecret: process.env.NEXT_PUBLIC_GOOGLE_SECRET || '',
+      clientId: process.env.GOOGLE_ID || '',
+      clientSecret: process.env.GOOGLE_SECRET || '',
     }),
     GithubProvider({
-      clientId: process.env.NEXT_PUBLIC_GITHUB_ID || '',
-      clientSecret: process.env.NEXT_PUBLIC_GITHUB_SECRET || '',
+      clientId: process.env.GITHUB_ID || '',
+      clientSecret: process.env.GITHUB_SECRET || '',
     }),
     AzureDevOpsProvider({
-      clientId: process.env.NEXT_PUBLIC_AZURE_DEVOPS_ID || '',
-      clientSecret: process.env.NEXT_PUBLIC_AZURE_DEVOPS_SECRET || '',
+      clientId: process.env.AZURE_DEVOPS_ID || '',
+      clientSecret: process.env.AZURE_DEVOPS_SECRET || '',
     }),
-    {
-      id: "bitbucket",
-      name: "Bitbucket",
-      type: "oauth",
-      authorization: {
-        url: `https://bitbucket.org/site/oauth2/authorize`,
-        params: {
-          scope: "email account",
-          response_type: "code",
-        },
-      },
-      token: `https://bitbucket.org/site/oauth2/access_token`,
-      userinfo: {
-        request: ({ tokens }: any) =>
-          axios
-            .get("https://api.bitbucket.org/2.0/user", {
-              headers: {
-                Authorization: `Bearer ${tokens.access_token}`,
-                Accept: "application/json",
-              },
-            })
-            .then((r) => r.data),
-      },
-      async profile(profile: BitbucketProfile, tokens) {
-        const email = await axios
-          .get<BitbucketEmailsResponse>(
-            "https://api.bitbucket.org/2.0/user/emails",
-            {
-              headers: {
-                Authorization: `Bearer ${tokens.access_token}`,
-                Accept: "application/json",
-              },
-            }
-          )
-          .then(
-            (r) =>
-              // find the primary email, or the first available email
-              (r.data.values.find((value) => value.is_primary) || r.data.values[0])?.email
-          );
+    // {
+    //   id: "bitbucket",
+    //   name: "Bitbucket",
+    //   type: "oauth",
+    //   authorization: {
+    //     url: `https://bitbucket.org/site/oauth2/authorize`,
+    //     params: {
+    //       scope: "email account",
+    //       response_type: "code",
+    //     },
+    //   },
+    //   token: `https://bitbucket.org/site/oauth2/access_token`,
+    //   userinfo: {
+    //     request: ({ tokens }: any) =>
+    //       axios
+    //         .get("https://api.bitbucket.org/2.0/user", {
+    //           headers: {
+    //             Authorization: `Bearer ${tokens.access_token}`,
+    //             Accept: "application/json",
+    //           },
+    //         })
+    //         .then((r) => r.data),
+    //   },
+    //   async profile(profile: BitbucketProfile, tokens) {
+    //     const email = await axios
+    //       .get<BitbucketEmailsResponse>(
+    //         "https://api.bitbucket.org/2.0/user/emails",
+    //         {
+    //           headers: {
+    //             Authorization: `Bearer ${tokens.access_token}`,
+    //             Accept: "application/json",
+    //           },
+    //         }
+    //       )
+    //       .then(
+    //         (r) =>
+    //           // find the primary email, or the first available email
+    //           (r.data.values.find((value) => value.is_primary) || r.data.values[0])?.email
+    //       );
 
-        return {
-          ...profile,
-          id: profile.account_id,
-          email,
-          image: profile.links.avatar.href,
-          name: profile.display_name,
-        };
-      },
-      clientId: process.env.NEXT_PUBLIC_BITBUCKET_ID,
-      clientSecret: process.env.NEXT_PUBLIC_BITBUCKET_SECRET,
-    },
+    //     return {
+    //       ...profile,
+    //       id: profile.account_id,
+    //       email,
+    //       image: profile.links.avatar.href,
+    //       name: profile.display_name,
+    //     };
+    //   },
+    //   clientId: process.env.BITBUCKET_ID,
+    //   clientSecret: process.env.BITBUCKET_SECRET,
+    // },
     Credentials({
       name: "Credentials",
       credentials: {

@@ -6,6 +6,7 @@ import Logo from "@/assets/logos/tomi-runner.png"
 import Arrow from "@/assets/logos/arrow.png"
 import Google from "@/assets/logos/google.png"
 import Github from "@/assets/logos/github-icon.png"
+import BitBucket from "@/assets/logos/bitbucket-icon.png"
 import Azure from "@/assets/logos/azure-icon.svg"
 import { handleSignIn } from "@/app/_components/auth/action"
 
@@ -47,16 +48,16 @@ const SignUp = () => {
       <div className="flex gap-6 w-full">
         <button
           className="flex items-center justify-center gap-3 p-4 w-1/2 bg-[#333333] rounded-lg"
-          onClick={() => handleSignIn("google")}
+          onClick={() => handleSignIn("azure-devops")}
         >
-          <Image src={Azure} alt="google" width={24} height={24} />
+          <Image src={Azure} alt="Azure DevOps" width={24} height={24} />
           <div className="text-sm">Azure DevOps</div>
         </button>
         <button
           className="flex items-center justify-center gap-3 p-4 w-1/2 bg-[#333333] rounded-lg"
-          onClick={() => handleSignIn("github")}
+          onClick={() => handleSignIn("bitbucket")}
         >
-          <Image src={Github} alt="github" width={24} height={24} />
+          <Image src={BitBucket} alt="bitbucket" width={24} height={24} />
           <div className="text-sm">BitBucket</div>
         </button>
       </div>
