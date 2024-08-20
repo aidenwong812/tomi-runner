@@ -1,7 +1,9 @@
 import NextAuth, { DefaultSession, NextAuthConfig } from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
 import GithubProvider from "next-auth/providers/github"
+import AzureDevOpsProvider from "next-auth/providers/azure-devops"
 import Credentials from "next-auth/providers/credentials"
+import axios from "axios"
 import { ethers } from "ethers"
 import { adapter } from "./adapter"
 import prismaClient from "./prisma-client"
@@ -10,13 +12,68 @@ const authOptions = {
   adapter,
   providers: [
     GoogleProvider({
-      clientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || '',
-      clientSecret: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET || '',
+      clientId: process.env.NEXT_PUBLIC_GOOGLE_ID || '',
+      clientSecret: process.env.NEXT_PUBLIC_GOOGLE_SECRET || '',
     }),
     GithubProvider({
-      clientId: process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID || '',
-      clientSecret: process.env.NEXT_PUBLIC_GITHUB_CLIENT_SECRET || '',
+      clientId: process.env.NEXT_PUBLIC_GITHUB_ID || '',
+      clientSecret: process.env.NEXT_PUBLIC_GITHUB_SECRET || '',
     }),
+    AzureDevOpsProvider({
+      clientId: process.env.NEXT_PUBLIC_AZURE_DEVOPS_ID || '',
+      clientSecret: process.env.NEXT_PUBLIC_AZURE_DEVOPS_SECRET || '',
+    }),
+    {
+      id: "bitbucket",
+      name: "Bitbucket",
+      type: "oauth",
+      authorization: {
+        url: `https://bitbucket.org/site/oauth2/authorize`,
+        params: {
+          scope: "email account",
+          response_type: "code",
+        },
+      },
+      token: `https://bitbucket.org/site/oauth2/access_token`,
+      userinfo: {
+        request: ({ tokens }: any) =>
+          axios
+            .get("https://api.bitbucket.org/2.0/user", {
+              headers: {
+                Authorization: `Bearer ${tokens.access_token}`,
+                Accept: "application/json",
+              },
+            })
+            .then((r) => r.data),
+      },
+      async profile(profile: BitbucketProfile, tokens) {
+        const email = await axios
+          .get<BitbucketEmailsResponse>(
+            "https://api.bitbucket.org/2.0/user/emails",
+            {
+              headers: {
+                Authorization: `Bearer ${tokens.access_token}`,
+                Accept: "application/json",
+              },
+            }
+          )
+          .then(
+            (r) =>
+              // find the primary email, or the first available email
+              (r.data.values.find((value) => value.is_primary) || r.data.values[0])?.email
+          );
+
+        return {
+          ...profile,
+          id: profile.account_id,
+          email,
+          image: profile.links.avatar.href,
+          name: profile.display_name,
+        };
+      },
+      clientId: process.env.NEXT_PUBLIC_BITBUCKET_ID,
+      clientSecret: process.env.NEXT_PUBLIC_BITBUCKET_SECRET,
+    },
     Credentials({
       name: "Credentials",
       credentials: {
@@ -61,4 +118,47 @@ declare module "next-auth" {
       prikey: string
     } & DefaultSession["user"]
   }
+}
+
+export interface BitbucketProfile {
+  display_name: string;
+  links: BitbucketProfileLinks;
+  created_on: Date;
+  type: string;
+  uuid: string;
+  has_2fa_enabled: null;
+  username: string;
+  is_staff: boolean;
+  account_id: string;
+  nickname: string;
+  account_status: string;
+  location: null;
+}
+
+export interface BitbucketProfileLinks {
+  self: BitbucketAvatarResource;
+  avatar: BitbucketAvatarResource;
+  repositories: BitbucketAvatarResource;
+  snippets: BitbucketAvatarResource;
+  html: BitbucketAvatarResource;
+  hooks: BitbucketAvatarResource;
+}
+
+export interface BitbucketAvatarResource {
+  href: string;
+}
+
+export interface BitbucketEmailsResponse {
+  values: BitbucketEmailResource[];
+  pagelen: number;
+  size: number;
+  page: number;
+}
+
+export interface BitbucketEmailResource {
+  type: string;
+  links: null[];
+  email: string;
+  is_primary: boolean;
+  is_confirmed: boolean;
 }

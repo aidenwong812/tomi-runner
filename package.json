@@ -24,6 +24,7 @@
     "@trpc/client": "next",
     "@trpc/react-query": "next",
     "@trpc/server": "next",
+    "axios": "^1.7.4",
     "ethers": "5.7.2",
     "next": "^14.2.4",
     "next-auth": "5.0.0-beta.19",
