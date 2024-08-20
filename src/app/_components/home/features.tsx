@@ -8,6 +8,8 @@ import Rocket from "@/assets/logos/rocket.png"
 import Eco from "@/assets/logos/eco.png"
 import Github from "@/assets/logos/github.png"
 import Tomi from "@/assets/logos/tomi-runner.png"
+import Azure from "@/assets/logos/azure.png"
+import BitBucket from "@/assets/logos/bitbucket.png"
 import Export from "@/assets/logos/export.png"
 
 const Features = () => {
@@ -24,35 +26,68 @@ const Features = () => {
           <Card icon={Eco} title="Eco-Friendly" description="A sustainable and green infrastructure." />
         </div>
       </div>
-      
-      
+
+
       <div id="pricing" className="flex flex-col justify-center gap-8">
         <h1 className="font-semibold text-5xl text-center mt-28">PRICING</h1>
-        <div className="grid grid-cols-4 border-2 border-[#3E3E3E] rounded-lg items-center justify-center">
-          <div className="col-span-2">
-            <div className="p-6 pl-16 w-full">
-              <p className="flex items-center h-[32px]">Configuration</p>
-            </div>
-            <div className="p-6 pl-16 w-full border-t-2 border-[#3E3E3E]">Linux 2 vCPU | 8 GB</div>
-            <div className="p-6 pl-16 w-full border-t-2 border-[#3E3E3E]">Linux 4 vCPU | 16 GB</div>
-            <div className="p-6 pl-16 w-full border-t-2 border-[#3E3E3E]">Linux 8 vCPU | 32 GB</div>
-          </div>
-          <div className="border-l-2 border-r-2 border-[#3E3E3E]">
-            <div className="flex justify-center p-6 w-full">
-              <Image src={Github} alt="github" width={120} height={32} />
-            </div>
-            <div className="p-6 w-full text-center text-[#FF4A4A] border-t-2 border-[#3E3E3E]">$0.008 / MIN</div>
-            <div className="p-6 w-full text-center text-[#FF4A4A] border-t-2 border-[#3E3E3E]">$0.016 / MIN</div>
-            <div className="p-6 w-full text-center text-[#FF4A4A] border-t-2 border-[#3E3E3E]">$0.032 / MIN</div>
-          </div>
-          <div className="bg-gradient-to-t from-[#FF008329] to-[#FF008300]">
-            <div className="flex justify-center p-6 w-full">
-              <Image src={Tomi} alt="Tomi" width={150} height={32} />
-            </div>
-            <div className="p-6 w-full text-center border-t-2 border-[#3E3E3E]">$0.004 / MIN</div>
-            <div className="p-6 w-full text-center border-t-2 border-[#3E3E3E]">$0.006 / MIN</div>
-            <div className="p-6 w-full text-center border-t-2 border-[#3E3E3E]">$0.012 / MIN</div>
-          </div>
+        <div className="border-2 border-[#3E3E3E] rounded-lg overflow-hidden">
+          <table className="w-full">
+            <thead className="rounded-lg">
+              <tr className="border-b-2 border-[#3E3E3E]">
+                <th className="text-base p-6 pl-12">Configuration</th>
+                <th className="p-6 border-x-2 border-[#3E3E3E]">
+                  <div className="flex justify-center">
+                    <Image src={Azure} alt="azure" width={140} height={32} />
+                  </div>
+                </th>
+                <th className="p-6 border-x-2 border-[#3E3E3E]">
+                  <div className="flex justify-center">
+                    <Image src={BitBucket} alt="bitbucket" width={130} height={32} />
+                  </div>
+                </th>
+                <th className="p-6 border-x-2 border-[#3E3E3E]">
+                  <div className="flex justify-center">
+                    <Image src={Github} alt="github" width={110} height={32} />
+                  </div>
+                </th>
+                <th className="p-6 bg-gradient-to-t from-[#FF008309] to-[#FF008300]">
+                  <div className="flex justify-center">
+                    <Image src={Tomi} alt="Tomi" width={130} height={32} />
+                  </div>
+                </th>
+              </tr>
+            </thead>
+            <tbody className="rounded-b">
+              <tr className="border-b-2 border-[#3E3E3E]">
+                <td className="text-base p-6 pl-12">Free Minutes</td>
+                <td className="text-base p-6 text-center border-x-2 border-[#3E3E3E] text-[#FF4A4A]">1800 Minutes</td>
+                <td className="text-base p-6 text-center border-x-2 border-[#3E3E3E] text-[#FF4A4A]">50 Minutes</td>
+                <td className="text-base p-6 text-center border-x-2 border-[#3E3E3E] text-[#FF4A4A]">2000 Minutes</td>
+                <td className="text-base p-6 text-center bg-gradient-to-t from-[#FF008314] to-[#FF008309] text-[#00FF19]">4000 Minutes</td>
+              </tr>
+              <tr className="border-b-2 border-[#3E3E3E]">
+                <td className="text-base p-6 pl-12">Linux 2 vCPU | 8 GB</td>
+                <td className="text-base p-6 text-center border-x-2 border-[#3E3E3E] text-[#FF4A4A]">$0.008 / MIN</td>
+                <td className="text-base p-6 text-center border-x-2 border-[#3E3E3E] text-[#FF4A4A]">$0.008 / MIN</td>
+                <td className="text-base p-6 text-center border-x-2 border-[#3E3E3E] text-[#FF4A4A]">$0.008 / MIN</td>
+                <td className="text-base p-6 text-center bg-gradient-to-t from-[#FF008319] to-[#FF008314] text-[#00FF19]">$0.004 / MIN</td>
+              </tr>
+              <tr className="border-b-2 border-[#3E3E3E]">
+                <td className="text-base p-6 pl-12">Linux 4 vCPU | 16 GB</td>
+                <td className="text-base p-6 text-center border-x-2 border-[#3E3E3E] text-[#FF4A4A]">$0.0016 / MIN</td>
+                <td className="text-base p-6 text-center border-x-2 border-[#3E3E3E] text-[#FF4A4A]">$0.016 / MIN</td>
+                <td className="text-base p-6 text-center border-x-2 border-[#3E3E3E] text-[#FF4A4A]">$0.016 / MIN</td>
+                <td className="text-base p-6 text-center bg-gradient-to-t from-[#FF008324] to-[#FF008319] text-[#00FF19]">$0.006 / MIN</td>
+              </tr>
+              <tr>
+                <td className="text-base p-6 pl-12">Linux 8 vCPU | 32 GB</td>
+                <td className="text-base p-6 text-center border-x-2 border-[#3E3E3E] text-[#FF4A4A]">$0.032 / MIN</td>
+                <td className="text-base p-6 text-center border-x-2 border-[#3E3E3E] text-[#FF4A4A]">$0.032 / MIN</td>
+                <td className="text-base p-6 text-center border-x-2 border-[#3E3E3E] text-[#FF4A4A]">$0.032 / MIN</td>
+                <td className="text-base p-6 text-center bg-gradient-to-t from-[#FF008329] to-[#FF008324] text-[#00FF19]">$0.012 / MIN</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
 

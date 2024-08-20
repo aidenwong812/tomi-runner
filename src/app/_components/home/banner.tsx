@@ -11,7 +11,7 @@ const Banner = () => {
         <div className="flex flex-col gap-2">
           <h2 className="uppercase text-[40px] font-medium">Keep Github Actions,</h2>
           <h1 className="uppercase text-6xl font-medium">Ditch Their Runners.</h1>
-          <p className="mt-5 opacity-80 text-base">Deploy CI/CD GitHub Actions workflows to Decentralized physical <br />infrastructure network (DePIN)</p>
+          <p className="mt-5 opacity-80 text-base">Run CI/CD workflows on Decentralized physical infrastructure network (DePIN) with a fraction of the cost</p>
           <p className="text-2xl font-bold mt-1">4,000 Free Monthly! <span className="text-lg text-primary">Compute minutes.</span></p>
         </div>
         <div className="flex text-sm gap-4 mt-8">
