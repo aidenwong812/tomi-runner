@@ -50,7 +50,7 @@ const LogIn = () => {
       <div className="flex gap-6 w-full">
         <button
           className="flex items-center justify-center gap-3 p-4 w-1/2 bg-[#333333] rounded-lg"
-          onClick={() => handleSignIn("google")}
+          onClick={() => handleSignIn("azure-devops")}
         >
           <Image src={Azure} alt="google" width={24} height={24} />
           <div className="text-sm">Azure DevOps</div>
