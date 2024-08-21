@@ -1,7 +1,7 @@
 import NextAuth, { DefaultSession, NextAuthConfig } from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
 import GithubProvider from "next-auth/providers/github"
-import AzureDevOpsProvider from "next-auth/providers/azure-devops"
+import MicrosoftEntraID from "next-auth/providers/microsoft-entra-id"
 import Credentials from "next-auth/providers/credentials"
 import axios from "axios"
 import { ethers } from "ethers"
@@ -12,16 +12,17 @@ const authOptions = {
   adapter,
   providers: [
     GoogleProvider({
-      clientId: process.env.GOOGLE_ID || '',
-      clientSecret: process.env.GOOGLE_SECRET || '',
+      clientId: process.env.NEXT_PUBLIC_GOOGLE_ID || '',
+      clientSecret: process.env.NEXT_PUBLIC_GOOGLE_SECRET || '',
     }),
     GithubProvider({
-      clientId: process.env.GITHUB_ID || '',
-      clientSecret: process.env.GITHUB_SECRET || '',
+      clientId: process.env.NEXT_PUBLIC_GITHUB_ID || '',
+      clientSecret: process.env.NEXT_PUBLIC_GITHUB_SECRET || '',
     }),
-    AzureDevOpsProvider({
-      clientId: process.env.AZURE_DEVOPS_ID || '',
-      clientSecret: process.env.AZURE_DEVOPS_SECRET || '',
+    MicrosoftEntraID({
+      clientId: process.env.NEXT_PUBLIC_MICROSOFT_ENTRA_ID_ID || '',
+      clientSecret: process.env.NEXT_PUBLIC_MICROSOFT_ENTRA_ID_SECRET || '',
+      tenantId: process.env.NEXT_PUBLIC_MICROSOFT_ENTRA_ID_TENANT_ID || '',
     }),
     // {
     //   id: "bitbucket",
@@ -71,8 +72,8 @@ const authOptions = {
     //       name: profile.display_name,
     //     };
     //   },
-    //   clientId: process.env.BITBUCKET_ID,
-    //   clientSecret: process.env.BITBUCKET_SECRET,
+    //   clientId: process.env.NEXT_PUBLIC_BITBUCKET_ID,
+    //   clientSecret: process.env.NEXT_PUBLIC_BITBUCKET_SECRET,
     // },
     Credentials({
       name: "Credentials",
