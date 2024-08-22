@@ -28,6 +28,9 @@ const authOptions = {
       clientId: process.env.MICROSOFT_ENTRA_ID_ID || '',
       clientSecret: process.env.MICROSOFT_ENTRA_ID_SECRET || '',
       tenantId: process.env.MICROSOFT_ENTRA_ID_TENANT_ID || '',
+      authorization: "https://login.microsoftonline.com/common/oauth2/v2.0/authorize",
+      token: "https://login.microsoftonline.com/common/oauth2/v2.0/token",
+      issuer: `/${process.env.MICROSOFT_ENTRA_ID_TENANT_ID || ''}/v2.0`
     }),
     {
       id: "bitbucket",
@@ -51,7 +54,7 @@ const authOptions = {
                 Accept: "application/json",
               },
             });
-            return response.data;
+          return response.data;
         }
       },
       async profile(profile: BitbucketProfile, tokens) {
