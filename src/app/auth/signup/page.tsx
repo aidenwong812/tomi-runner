@@ -55,7 +55,7 @@ const SignUp = () => {
         </button>
         <button
           className="flex items-center justify-center gap-3 p-4 w-1/2 bg-[#333333] rounded-lg"
-          onClick={() => handleSignIn("azure-devops")}
+          onClick={() => handleSignIn("bitbucket")}
         >
           <Image src={BitBucket} alt="bitbucket" width={24} height={24} />
           <div className="text-sm">BitBucket</div>

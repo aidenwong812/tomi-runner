@@ -29,57 +29,59 @@ const authOptions = {
       clientSecret: process.env.MICROSOFT_ENTRA_ID_SECRET || '',
       tenantId: process.env.MICROSOFT_ENTRA_ID_TENANT_ID || '',
     }),
-    // {
-    //   id: "bitbucket",
-    //   name: "Bitbucket",
-    //   type: "oauth",
-    //   authorization: {
-    //     url: `https://bitbucket.org/site/oauth2/authorize`,
-    //     params: {
-    //       scope: "email account",
-    //       response_type: "code",
-    //     },
-    //   },
-    //   token: `https://bitbucket.org/site/oauth2/access_token`,
-    //   userinfo: {
-    //     request: ({ tokens }: any) =>
-    //       axios
-    //         .get("https://api.bitbucket.org/2.0/user", {
-    //           headers: {
-    //             Authorization: `Bearer ${tokens.access_token}`,
-    //             Accept: "application/json",
-    //           },
-    //         })
-    //         .then((r) => r.data),
-    //   },
-    //   async profile(profile: BitbucketProfile, tokens) {
-    //     const email = await axios
-    //       .get<BitbucketEmailsResponse>(
-    //         "https://api.bitbucket.org/2.0/user/emails",
-    //         {
-    //           headers: {
-    //             Authorization: `Bearer ${tokens.access_token}`,
-    //             Accept: "application/json",
-    //           },
-    //         }
-    //       )
-    //       .then(
-    //         (r) =>
-    //           // find the primary email, or the first available email
-    //           (r.data.values.find((value) => value.is_primary) || r.data.values[0])?.email
-    //       );
+    {
+      id: "bitbucket",
+      name: "Bitbucket",
+      type: "oauth",
+      authorization: {
+        url: `https://bitbucket.org/site/oauth2/authorize`,
+        params: {
+          scope: "email account",
+          response_type: "code",
+        },
+      },
+      token: `https://bitbucket.org/site/oauth2/access_token`,
+      userinfo: {
+        url: "https://api.bitbucket.org/2.0/user",
+        async request({ tokens }: any) {
+          const response = await axios
+            .get("https://api.bitbucket.org/2.0/user", {
+              headers: {
+                Authorization: `Bearer ${tokens.access_token}`,
+                Accept: "application/json",
+              },
+            });
+            return response.data;
+        }
+      },
+      async profile(profile: BitbucketProfile, tokens) {
+        const email = await axios
+          .get<BitbucketEmailsResponse>(
+            "https://api.bitbucket.org/2.0/user/emails",
+            {
+              headers: {
+                Authorization: `Bearer ${tokens.access_token}`,
+                Accept: "application/json",
+              },
+            }
+          )
+          .then(
+            (r) =>
+              // find the primary email, or the first available email
+              (r.data.values.find((value) => value.is_primary) || r.data.values[0])?.email
+          );
 
-    //     return {
-    //       ...profile,
-    //       id: profile.account_id,
-    //       email,
-    //       image: profile.links.avatar.href,
-    //       name: profile.display_name,
-    //     };
-    //   },
-    //   clientId: process.env.BITBUCKET_ID,
-    //   clientSecret: process.env.BITBUCKET_SECRET,
-    // },
+        return {
+          id: profile.account_id,
+          email,
+          emailVerified: null,
+          image: profile.links.avatar.href,
+          name: profile.display_name,
+        };
+      },
+      clientId: process.env.BITBUCKET_ID,
+      clientSecret: process.env.BITBUCKET_SECRET,
+    },
     Credentials({
       name: "Credentials",
       credentials: {
@@ -108,15 +110,6 @@ const authOptions = {
     })
   ],
   secret: process.env.NEXTAUTH_SECRET || '',
-  callbacks: {
-    async jwt({ token, account }) {
-      // IMPORTANT: Persist the access_token to the token right after sign in
-      if (account) {
-        token.idToken = account.id_token;
-      }
-      return token;
-    },
-  },
 } satisfies NextAuthConfig
 
 export const { handlers, auth, signIn, signOut } = NextAuth(authOptions)
