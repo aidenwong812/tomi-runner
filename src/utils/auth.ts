@@ -108,6 +108,15 @@ const authOptions = {
     })
   ],
   secret: process.env.NEXTAUTH_SECRET || '',
+  callbacks: {
+    async jwt({ token, account }) {
+      // IMPORTANT: Persist the access_token to the token right after sign in
+      if (account) {
+        token.idToken = account.id_token;
+      }
+      return token;
+    },
+  },
 } satisfies NextAuthConfig
 
 export const { handlers, auth, signIn, signOut } = NextAuth(authOptions)
