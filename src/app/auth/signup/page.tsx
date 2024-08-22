@@ -48,7 +48,7 @@ const SignUp = () => {
       <div className="flex gap-6 w-full">
         <button
           className="flex items-center justify-center gap-3 p-4 w-1/2 bg-[#333333] rounded-lg"
-          onClick={() => handleSignIn("azure-devops")}
+          onClick={() => handleSignIn("microsoft-entra-id")}
         >
           <Image src={Azure} alt="Azure DevOps" width={24} height={24} />
           <div className="text-sm">Azure DevOps</div>
