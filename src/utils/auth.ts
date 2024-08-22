@@ -2,6 +2,7 @@ import NextAuth, { DefaultSession, NextAuthConfig } from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
 import GithubProvider from "next-auth/providers/github"
 import MicrosoftEntraID from "next-auth/providers/microsoft-entra-id"
+import AzureDevOps from "next-auth/providers/azure-devops"
 import Credentials from "next-auth/providers/credentials"
 import axios from "axios"
 import { ethers } from "ethers"
@@ -18,6 +19,10 @@ const authOptions = {
     GithubProvider({
       clientId: process.env.GITHUB_ID || '',
       clientSecret: process.env.GITHUB_SECRET || '',
+    }),
+    AzureDevOps({
+      clientId: process.env.AZURE_DEVOPS_ID || '',
+      clientSecret: process.env.AZURE_DEVOPS_SECRET || '',
     }),
     MicrosoftEntraID({
       clientId: process.env.MICROSOFT_ENTRA_ID_ID || '',
