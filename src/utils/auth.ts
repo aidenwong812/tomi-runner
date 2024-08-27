@@ -2,14 +2,15 @@ import NextAuth, { DefaultSession, NextAuthConfig } from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
 import GithubProvider from "next-auth/providers/github"
 import MicrosoftEntraID from "next-auth/providers/microsoft-entra-id"
-import AzureDevOps from "next-auth/providers/azure-devops"
 import Credentials from "next-auth/providers/credentials"
 import axios from "axios"
 import { ethers } from "ethers"
 import { adapter } from "./adapter"
 import prismaClient from "./prisma-client"
+import { authConfig } from "./auth.config"
 
 const authOptions = {
+  ...authConfig,
   adapter,
   providers: [
     GoogleProvider({
@@ -20,17 +21,19 @@ const authOptions = {
       clientId: process.env.GITHUB_ID || '',
       clientSecret: process.env.GITHUB_SECRET || '',
     }),
-    AzureDevOps({
-      clientId: process.env.AZURE_DEVOPS_ID || '',
-      clientSecret: process.env.AZURE_DEVOPS_SECRET || '',
-    }),
     MicrosoftEntraID({
       clientId: process.env.MICROSOFT_ENTRA_ID_ID || '',
       clientSecret: process.env.MICROSOFT_ENTRA_ID_SECRET || '',
       tenantId: process.env.MICROSOFT_ENTRA_ID_TENANT_ID || '',
-      authorization: "https://login.microsoftonline.com/common/oauth2/v2.0/authorize",
-      token: "https://login.microsoftonline.com/common/oauth2/v2.0/token",
-      issuer: `/${process.env.MICROSOFT_ENTRA_ID_TENANT_ID || ''}/v2.0`
+      // token: `https://login.microsoftonline.com/${process.env.MICROSOFT_ENTRA_ID_TENANT_ID}/oauth2/v2.0/token`,
+      // issuer: `https://login.microsoftonline.com/${process.env.MICROSOFT_ENTRA_ID_TENANT_ID}/v2.0`,
+      authorization: {
+        // https://learn.microsoft.com/en-us/graph/permissions-overview
+        // url: `https://login.microsoftonline.com/${process.env.MICROSOFT_ENTRA_ID_TENANT_ID}/oauth2/v2.0/authorize`,
+        params: {
+          scope: "openid profile email User.Read offline_access Presence.Read",
+        },
+      },
     }),
     {
       id: "bitbucket",
@@ -113,6 +116,22 @@ const authOptions = {
     })
   ],
   secret: process.env.NEXTAUTH_SECRET || '',
+  callbacks: {
+    authorized({ auth, request: { nextUrl } }) {
+      const isLoggedIn = !!auth?.user;
+      const isOnDashboard = nextUrl.pathname.startsWith('/dashboard');
+      if (isOnDashboard) {
+        if (isLoggedIn) return true;
+        return false; // Redirect unauthenticated users to login page
+      } else if (isLoggedIn) {
+        return Response.redirect(new URL('/dashboard', nextUrl));
+      }
+      return true;
+    },
+  },
+  pages: {
+    signIn: '/login',
+  },
 } satisfies NextAuthConfig
 
 export const { handlers, auth, signIn, signOut } = NextAuth(authOptions)
