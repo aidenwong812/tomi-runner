@@ -16,10 +16,12 @@ const authOptions = {
     GoogleProvider({
       clientId: process.env.GOOGLE_ID || '',
       clientSecret: process.env.GOOGLE_SECRET || '',
+      allowDangerousEmailAccountLinking: true,
     }),
     GithubProvider({
       clientId: process.env.GITHUB_ID || '',
       clientSecret: process.env.GITHUB_SECRET || '',
+      allowDangerousEmailAccountLinking: true,
     }),
     MicrosoftEntraID({
       clientId: process.env.MICROSOFT_ENTRA_ID_ID || '',
@@ -34,6 +36,7 @@ const authOptions = {
           scope: "openid profile email User.Read offline_access Presence.Read",
         },
       },
+      allowDangerousEmailAccountLinking: true,
     }),
     {
       id: "bitbucket",
@@ -87,6 +90,7 @@ const authOptions = {
       },
       clientId: process.env.BITBUCKET_ID,
       clientSecret: process.env.BITBUCKET_SECRET,
+      allowDangerousEmailAccountLinking: true,
     },
     Credentials({
       name: "Credentials",
@@ -116,22 +120,6 @@ const authOptions = {
     })
   ],
   secret: process.env.NEXTAUTH_SECRET || '',
-  callbacks: {
-    authorized({ auth, request: { nextUrl } }) {
-      const isLoggedIn = !!auth?.user;
-      const isOnDashboard = nextUrl.pathname.startsWith('/dashboard');
-      if (isOnDashboard) {
-        if (isLoggedIn) return true;
-        return false; // Redirect unauthenticated users to login page
-      } else if (isLoggedIn) {
-        return Response.redirect(new URL('/dashboard', nextUrl));
-      }
-      return true;
-    },
-  },
-  pages: {
-    signIn: '/login',
-  },
 } satisfies NextAuthConfig
 
 export const { handlers, auth, signIn, signOut } = NextAuth(authOptions)
